@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query, ValidationPipe, UsePipes } from '@nestjs/common';
 import {TasksService} from './tasks.service'
 import { Task } from './tasks.model';
 import { CreateTaskDTO } from './dto/tasks.create.dto';
@@ -20,6 +20,7 @@ export class TasksController {
   }
 
   @Post()
+  @UsePipes(ValidationPipe)
   createTask(@Body() createTaskDTO: CreateTaskDTO): Task {
     return this.taskService.createTask(createTaskDTO)
   }
