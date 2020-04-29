@@ -51,7 +51,8 @@ export class TasksService {
     return found
   }
 
-  updateStatusTask (id: string, status: TaskStatus): Task {
+  updateStatusTask (id: string, taskStatusDTO: UpdateTaskDTO): Task {
+    const {status} = taskStatusDTO
     if (!TaskStatus[status]) return
     const task = this.getTaskById(id)
     task.status = status

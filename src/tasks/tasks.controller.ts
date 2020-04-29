@@ -36,9 +36,9 @@ export class TasksController {
   @Put('/:id')
   updateTask(
     @Param('id') id: string,
-    @Body('status', TaskStatusValidationPipe) status: TaskStatus
+    @Body(ValidationPipe) taskStatusDTO: UpdateTaskDTO
   ): Task {
-    return this.taskService.updateStatusTask(id, status)
+    return this.taskService.updateStatusTask(id, taskStatusDTO)
   }
 
   @Delete('/:id')
