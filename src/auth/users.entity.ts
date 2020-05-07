@@ -22,7 +22,7 @@ export class User extends BaseEntity {
   @Column()
   isConfirmed: boolean
 
-  async validateUserPassword(password: string) : Promise<boolean> {
+  async validatePassword(password: string) : Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt)
     return hash === this.password
   }
