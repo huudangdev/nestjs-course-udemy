@@ -9,11 +9,10 @@ import * as bcrypt from 'bcrypt'
 export class UserRepository extends Repository<User> {
   
   async signUp(authCredential: AuthCredential): Promise<void> {
-    const {username, email, password} = authCredential
-    
+    const {username, password} = authCredential
     const newUser = new User()
     newUser.username = username
-    newUser.email = email
+    // newUser.email = email
     newUser.isConfirmed = false
     newUser.salt = await bcrypt.genSalt()
     newUser.password = await this.hashPassword(password, newUser.salt)
@@ -33,10 +32,9 @@ export class UserRepository extends Repository<User> {
 
   async validateUserPassword(authCredential: AuthCredential): Promise<string> {
     const {username, password} = authCredential
+    const user = await this.findOne({username})
 
-    const user = await this.findOne(username)
-
-    if (user && await user.validateUserPassword(password)) {
+    if (user && await user.validatePassword(password)) {
       return user.username
     } else {
       return null
