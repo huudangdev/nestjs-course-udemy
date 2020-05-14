@@ -8,10 +8,12 @@ import { User } from 'src/auth/users.entity';
 
 @EntityRepository(Task)
 export class TaskRepository extends Repository<Task> {
-  async getTasks (filterTasksDTO: FilterTasksDTO) : Promise<Task[]> {
+  async getTasks (filterTasksDTO: FilterTasksDTO, user: User) : Promise<Task[]> {
     const {status, searchTerm } = filterTasksDTO
 
     const query = this.createQueryBuilder('task')
+
+    query.where('task.userId = :userId', {userId: user.id})
 
     if (status) {
       query.andWhere('task.status = :status', {status})
@@ -33,6 +35,7 @@ export class TaskRepository extends Repository<Task> {
     newTask.description = description
     newTask.status = TaskStatus.TODO
     newTask.user = user
+    newTask.userId = user.id
     await newTask.save()
 
     delete newTask.user
