@@ -3,7 +3,7 @@ import { TaskStatus } from "../tasks.status.enum";
 
 export class TaskStatusValidationPipe implements PipeTransform {
   readonly AllowedStatus = [
-    TaskStatus.TODO,
+    TaskStatus.OPEN,
     TaskStatus.IN_PROGRESS,
     TaskStatus.DONE
   ]
