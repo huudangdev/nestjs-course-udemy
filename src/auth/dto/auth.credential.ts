@@ -7,9 +7,9 @@ export class AuthCredential {
   @MaxLength(20)
   username: string;
 
-  @IsNotEmpty()
-  @IsEmail()
-  email: string
+  // @IsNotEmpty()
+  // @IsEmail()
+  // email: string
 
   @IsNotEmpty()
   @IsString()

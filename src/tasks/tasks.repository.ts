@@ -33,7 +33,7 @@ export class TaskRepository extends Repository<Task> {
     const newTask = new Task()
     newTask.title = title
     newTask.description = description
-    newTask.status = TaskStatus.TODO
+    newTask.status = TaskStatus.OPEN
     newTask.user = user
     newTask.userId = user.id
     await newTask.save()
