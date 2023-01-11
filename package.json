@@ -30,7 +30,7 @@
     "@nestjs/typeorm": "^7.0.0",
     "bcrypt": "^4.0.1",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "config": "^3.3.1",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
